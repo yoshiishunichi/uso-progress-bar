@@ -8,14 +8,14 @@ import { ResponseData } from "./api/long-process";
 
 import type { NextPage } from "next";
 
-type FetchState = {
+export type FetchState = {
   data?: ResponseData;
   error?: unknown;
   fetching: boolean;
 };
 
 const Home: NextPage = () => {
-  const [{ data, error, fetching }, setFetchState] = useState<FetchState>({
+  const [fetchingState, setFetchState] = useState<FetchState>({
     data: undefined,
     error: undefined,
     fetching: false,
@@ -59,7 +59,7 @@ const Home: NextPage = () => {
           <CommonButton clickHandle={() => clickHandle()} text="すごく長〜い処理" />
         </div>
       </main>
-      <ProgressView />
+      <ProgressView fetchingState={fetchingState} />
     </>
   );
 };

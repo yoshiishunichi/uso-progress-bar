@@ -1,9 +1,15 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
-type ProgressViewProps = {};
+import { FetchState } from "pages";
 
-const ProgressView: FC<ProgressViewProps> = () => {
-  return (
+type ProgressViewProps = {
+  fetchingState: FetchState;
+};
+
+const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
+  const { error, fetching } = useMemo(() => fetchingState, [fetchingState]);
+
+  return fetching || error ? (
     <div className="absolute inset-0 flex items-center justify-center bg-frosted">
       <div className="h-28 w-96 rounded-sm border border-black bg-slate-100">
         <div className="flex h-6 items-center justify-center border-b border-black bg-gradient-to-b from-header-thin to-header-dark">
@@ -12,6 +18,8 @@ const ProgressView: FC<ProgressViewProps> = () => {
         <div>プログレスバー</div>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 
