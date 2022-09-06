@@ -11,7 +11,7 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-lg pt-24">
         <CommonButton clickHandle={() => clickHandle()} text="すごく長〜い処理" />
       </div>
     </main>
