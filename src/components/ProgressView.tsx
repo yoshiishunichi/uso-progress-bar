@@ -26,8 +26,14 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
             <div className="mx-auto mt-4 h-5 rounded-full border border-black bg-gradient-to-b from-bar-dark to-bar-thin shadow-xl"></div>
           </div>
           <div className="flex items-center gap-1">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-400 border-t-transparent"></div>
-            <p className="text-sm text-slate-900">すごく長〜い処理を実行中…</p>
+            {fetching ? (
+              <>
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
+                <p className="text-sm text-slate-900">すごく長〜い処理を実行中…</p>
+              </>
+            ) : (
+              <p className="text-sm font-medium text-red-500">エラーが発生しました…</p>
+            )}
           </div>
         </div>
       </div>
