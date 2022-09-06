@@ -2,6 +2,7 @@ import ky from "ky";
 import { useCallback, useState } from "react";
 
 import CommonButton from "components/CommonButton";
+import ProgressView from "components/ProgressView";
 
 import { ResponseData } from "./api/long-process";
 
@@ -52,18 +53,14 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <main>
-      <div className="mx-auto max-w-lg pt-24">
-        <CommonButton clickHandle={() => clickHandle()} text="すごく長〜い処理" />
-      </div>
-      {fetching ? (
-        <div>Fetcing...</div>
-      ) : error ? (
-        <div>エラー</div>
-      ) : (
-        <div>{data?.message ?? "データなし"}</div>
-      )}
-    </main>
+    <>
+      <main>
+        <div className="mx-auto max-w-lg pt-24">
+          <CommonButton clickHandle={() => clickHandle()} text="すごく長〜い処理" />
+        </div>
+      </main>
+      <ProgressView />
+    </>
   );
 };
 
