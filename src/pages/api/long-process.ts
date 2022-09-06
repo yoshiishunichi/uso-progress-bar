@@ -6,7 +6,7 @@ export type ResponseData = {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   setTimeout(() => {
-    res.status(200).json({ message: "success!" });
+    res.status(500).json({ message: "error" });
     res.end();
   }, 10000);
 }
