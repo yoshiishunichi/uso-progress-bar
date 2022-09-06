@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        close: "#f25f57",
         frosted: "rgba(255, 255, 255, 0.75)",
         header: {
           dark: "#a7a8a8",
