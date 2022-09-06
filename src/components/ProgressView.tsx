@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 import { FetchState } from "pages";
@@ -8,7 +8,21 @@ type ProgressViewProps = {
 };
 
 const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
+  const [progress, setProgress] = useState<number>(0);
   const { error, fetching } = useMemo(() => fetchingState, [fetchingState]);
+
+  useEffect(() => {
+    if (fetching || error) return;
+    setProgress(0);
+  }, [error, fetching]);
+
+  useEffect(() => {
+    if (!fetching) return;
+    const id = setInterval(() => {
+      setProgress((progress) => progress + 1);
+    }, 100);
+    return () => clearInterval(id);
+  }, [fetching]);
 
   return fetching || error ? (
     <div className="absolute inset-0 flex items-center justify-center bg-frosted">
@@ -23,7 +37,12 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
         </div>
         <div className="mx-auto flex w-11/12 flex-col justify-center gap-2">
           <div>
-            <div className="mx-auto mt-4 h-5 rounded-full border border-black bg-gradient-to-b from-bar-dark to-bar-thin shadow-xl"></div>
+            <div className="relative mx-auto mt-4 h-2 rounded-full bg-gradient-to-b from-bar-dark to-bar-thin shadow-xl">
+              <div
+                className="absolute top-0 left-0 h-full rounded-full bg-sky-500"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
           <div className="flex items-center gap-1">
             {fetching ? (
