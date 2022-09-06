@@ -8,5 +8,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
   setTimeout(() => {
     res.status(500).json({ message: "error" });
     res.end();
-  }, 10000);
+  }, 15000);
 }
