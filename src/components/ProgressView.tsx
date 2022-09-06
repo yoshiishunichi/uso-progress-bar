@@ -1,5 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react";
-import { IoClose } from "react-icons/io5";
+import { FC, memo, useEffect, useMemo, useState } from "react";
 
 import { FetchState } from "pages";
 
@@ -19,8 +18,8 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
   useEffect(() => {
     if (!fetching) return;
     const id = setInterval(() => {
-      setProgress((progress) => progress + 1);
-    }, 100);
+      setProgress((progress) => progress + 0.1);
+    }, 10);
     return () => clearInterval(id);
   }, [fetching]);
 
@@ -29,11 +28,6 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
       <div className="h-28 w-5/6 max-w-xl rounded-sm border border-black bg-white">
         <div className="relative flex h-6 items-center justify-center border-b border-black bg-gradient-to-b from-header-thin to-header-dark">
           <p className="text-center text-xs">Progress Bar</p>
-          <button className="absolute left-2 h-4 w-4 rounded-full bg-close">
-            <div className="flex h-4 w-4 items-center justify-center">
-              <IoClose size={12} />
-            </div>
-          </button>
         </div>
         <div className="mx-auto flex w-11/12 flex-col justify-center gap-2">
           <div>
@@ -62,4 +56,4 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
   );
 };
 
-export default ProgressView;
+export default memo(ProgressView);
