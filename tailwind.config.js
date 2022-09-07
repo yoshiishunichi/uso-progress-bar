@@ -17,6 +17,7 @@ module.exports = {
         },
       },
       fontFamily: {
+        asap: ["Asap", "sans-serif"],
         noto: ["Noto Sans JP", "sans-serif"],
       },
       transitionProperty: {
