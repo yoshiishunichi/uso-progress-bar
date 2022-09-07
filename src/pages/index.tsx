@@ -4,9 +4,11 @@ import { useCallback, useState } from "react";
 import CommonButton from "components/CommonButton";
 import ProgressView from "components/ProgressView";
 
-import { ResponseData } from "./api/long-process";
-
 import type { NextPage } from "next";
+
+type ResponseData = {
+  message: string;
+};
 
 export type FetchState = {
   data?: ResponseData;
