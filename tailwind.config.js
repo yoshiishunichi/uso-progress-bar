@@ -16,6 +16,9 @@ module.exports = {
           thin: "#cececd",
         },
       },
+      fontFamily: {
+        noto: ["Noto Sans JP", "sans-serif"],
+      },
       transitionProperty: {
         bg: "background",
       },
