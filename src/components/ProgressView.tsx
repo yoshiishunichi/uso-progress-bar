@@ -8,12 +8,12 @@ type ProgressViewProps = {
 
 const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
   const [progress, setProgress] = useState<number>(0);
-  const { error, fetching } = useMemo(() => fetchingState, [fetchingState]);
+  const { error, fetching, data } = useMemo(() => fetchingState, [fetchingState]);
 
   useEffect(() => {
-    if (fetching || error) return;
+    if (fetching || error || data) return;
     setProgress(0);
-  }, [error, fetching]);
+  }, [data, error, fetching]);
 
   useEffect(() => {
     if (!fetching) return;
@@ -23,7 +23,7 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
     return () => clearInterval(id);
   }, [fetching]);
 
-  return fetching || error ? (
+  return fetching || error || data ? (
     <div className="absolute inset-0 flex items-center justify-center bg-frosted">
       <div className="h-28 w-5/6 max-w-xl rounded-sm border border-black bg-slate-50">
         <div className="flex h-6 items-center justify-center border-b border-black bg-gradient-to-b from-header-thin to-header-dark">
@@ -44,8 +44,10 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
                 <p className="font-normal text-slate-900">すごく長〜い処理を実行中…</p>
               </>
-            ) : (
+            ) : error ? (
               <p className="font-medium text-red-500">エラーが発生しました…</p>
+            ) : (
+              <p className="font-normal text-slate-900">完了！</p>
             )}
           </div>
         </div>
