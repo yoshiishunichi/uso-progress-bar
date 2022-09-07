@@ -25,7 +25,7 @@ const ProgressView: FC<ProgressViewProps> = ({ fetchingState }) => {
 
   return fetching || error ? (
     <div className="absolute inset-0 flex items-center justify-center bg-frosted">
-      <div className="h-28 w-5/6 max-w-xl rounded-sm border border-black bg-red-400">
+      <div className="h-28 w-5/6 max-w-xl rounded-sm border border-black bg-slate-50">
         <div className="flex h-6 items-center justify-center border-b border-black bg-gradient-to-b from-header-thin to-header-dark">
           <p className="text-center text-xs">Progress Bar</p>
         </div>
