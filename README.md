@@ -1,3 +1,3 @@
-# next-lint-template-tailwind
+# uso-progress-bar
 
 嘘のプログレスバーです。
